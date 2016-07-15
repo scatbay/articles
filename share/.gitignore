@@ -1,6 +1,7 @@
 *
 
 !.gitignore
+!deploy/
 !doc/
 !public/
 !static/

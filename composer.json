@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "ext-sqlite3": "*",
         "snakevil/zen": "@dev",
         "zen/web-application": "^0.1.1",
         "zen/model": "^0.1.2",

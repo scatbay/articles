@@ -1,0 +1,14 @@
+<?php
+/**
+ * 配置表。
+ *
+ * @author    Snakevil Zen <zsnakevil@gmail.com>
+ * @copyright © 2016 ScatBay.com
+ * @license   GPL-3.0
+ */
+
+return array(
+    'password' => array(
+        'salt' => 'Jul. 15, 2016'
+    )
+);
