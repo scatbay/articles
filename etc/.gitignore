@@ -1,0 +1,6 @@
+*
+
+!.gitignore
+!nginx/
+!config.php~dist
+!route.php

@@ -1,0 +1,30 @@
+{
+    "name": "scatbay/articles",
+    "description": "Multi-user Articles Library.",
+    "type": "project",
+    "homepage": "https://github.com/scatbay/articles",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Snakevil Zen",
+            "email": "zsnakevil@gmail.com"
+        }
+    ],
+    "require": {
+        "snakevil/zen": "@dev",
+        "zen/web-application": "^0.1.1",
+        "zen/model": "^0.1.2",
+        "zen/data-pdo": "^0.1.0",
+        "zen/view": "^0.1.0",
+        "cebe/markdown": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "scatbay\\articles\\": "lib/"
+        }
+    },
+    "config": {
+        "vendor-dir": "include",
+        "bin-dir": "bin"
+    }
+}

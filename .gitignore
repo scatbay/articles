@@ -1,0 +1,13 @@
+*
+
+!.gitignore
+!bin/
+!etc/
+!include/
+!lib/
+!libexec/
+!share/
+!var/
+!composer.json
+!LICENSE
+!README.md

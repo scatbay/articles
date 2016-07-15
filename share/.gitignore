@@ -1,0 +1,6 @@
+*
+
+!.gitignore
+!doc/
+!public/
+!static/
