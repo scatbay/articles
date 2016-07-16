@@ -1,0 +1,9 @@
+<article>
+  <header>
+    <h1>{{article.title}}</h1>
+    <address>作者：{{article.author}}</address>
+    <address>发表于：{{article.time.format('Y 年 n 月 j 日 G 时')}}</address>
+    <blockquote>{{article.briefing}}</blockquote>
+  </header>
+  {{article.content|raw}}
+</article>
