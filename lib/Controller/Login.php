@@ -38,6 +38,6 @@ class Login extends zen\Controller\Web
         );
         $this->cookies['i'] = $o_user->tokenize();
         $this->cookies['i']->expire = '+1week';
-        $this->output->redirect('i/');
+        $this->output->redirect('i');
     }
 }

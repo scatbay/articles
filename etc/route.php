@@ -12,8 +12,9 @@ return array(
     '/s/' => array(
         'login' => $s_ns.'Login',
         'logout' => $s_ns.'Logout',
-        'i' => '@301:i/',
-        'i/' => $s_ns.'My\\Dashboard',
+        'i' => array(
+            '' => $s_ns.'My\\Dashboard',
+        ),
     ),
     '.*' => '@404',
 );
