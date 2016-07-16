@@ -17,7 +17,8 @@
         "zen/model": "^0.1.2",
         "zen/data-pdo": "^0.1.0",
         "zen/view": "^0.1.0",
-        "cebe/markdown": "^1.1"
+        "cebe/markdown": "^1.1",
+        "twig/twig": "^1.24"
     },
     "autoload": {
         "psr-4": {

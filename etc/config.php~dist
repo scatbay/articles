@@ -10,5 +10,9 @@
 return array(
     'password' => array(
         'salt' => 'Jul. 15, 2016'
+    ),
+    'caching' => array(
+        'solid' => 'var/cache',
+        'twig' => 'var/twig'
     )
 );
