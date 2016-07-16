@@ -22,7 +22,7 @@ class Login extends zen\Controller\Web
      */
     protected function onGET()
     {
-        $this->outupt->redirect('.', true);
+        $this->output->redirect('.', true);
     }
 
     /**
@@ -36,9 +36,8 @@ class Login extends zen\Controller\Web
             $this->input['p:account'],
             articles\Util\Password::salt($this->input['p:password'], $this->config['password.salt'])
         );
-
-        return new zen\View\Json(array(
-            'id' => $o_user->id,
-        ));
+        $this->cookies['i'] = $o_user->tokenize();
+        $this->cookies['i']->expire = '+1week';
+        $this->output->redirect('i/');
     }
 }

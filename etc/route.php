@@ -9,6 +9,10 @@
 $s_ns = 'scatbay\\articles\\Controller\\';
 
 return array(
-    '/s/login' => $s_ns.'Login',
+    '/s/' => array(
+        'login' => $s_ns.'Login',
+        'i' => '@301:i/',
+        'i/' => $s_ns.'My\\Dashboard',
+    ),
     '.*' => '@404',
 );

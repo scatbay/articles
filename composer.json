@@ -13,7 +13,7 @@
     "require": {
         "ext-sqlite3": "*",
         "snakevil/zen": "@dev",
-        "zen/web-application": "^0.1.1",
+        "zen/web-application": "@dev",
         "zen/model": "^0.1.2",
         "zen/data-pdo": "^0.1.0",
         "zen/view": "^0.1.0",
@@ -22,6 +22,12 @@
     "autoload": {
         "psr-4": {
             "scatbay\\articles\\": "lib/"
+        }
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
         }
     },
     "config": {
