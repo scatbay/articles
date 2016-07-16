@@ -14,6 +14,7 @@ return array(
         'logout' => $s_ns.'Logout',
         'i' => array(
             '' => $s_ns.'My\\Dashboard',
+            '/publish' => $s_ns.'My\\Publish',
         ),
     ),
     '.*' => '@404',
