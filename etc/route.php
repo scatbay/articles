@@ -11,6 +11,7 @@ $s_ns = 'scatbay\\articles\\Controller\\';
 return array(
     '/s/' => array(
         'login' => $s_ns.'Login',
+        'logout' => $s_ns.'Logout',
         'i' => '@301:i/',
         'i/' => $s_ns.'My\\Dashboard',
     ),
