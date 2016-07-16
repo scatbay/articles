@@ -1,0 +1,27 @@
+<h1>{{month}}</h1>
+{% if author %}
+  <h2>{{author}}</h2>
+{% endif %}
+{% if not articles|length %}
+  <address>Oops...</address>
+{% else %}
+  <ul>
+    {% for article in articles %}
+      <li>
+        <article>
+          <address>{{article.time.format('j 日 G 时')}}</address>
+          <h3>
+            <a href="{{month}}/{{article.id}}">{{article.title}}</a>
+          </h3>
+          {% if not author %}
+            <address>
+              作者：
+              <a href="?by={{article.author}}">{{article.author}}</a>
+            </address>
+          {% endif %}
+          <blockquote>{{article.briefing}}</blockquote>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
