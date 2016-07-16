@@ -30,6 +30,6 @@ class Publish extends articles\Controller\My
     protected function onPOST()
     {
         $o_art = articles\Model\Article::publish($this->self, $this->input['p:content']);
-        $this->output->redirect($o_art->time->format('../../Y/m/').$o_art->id);
+        $this->output->redirect($o_art->time->format('../../Y-m/').$o_art->id);
     }
 }

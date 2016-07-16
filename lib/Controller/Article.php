@@ -23,9 +23,9 @@ class Article extends zen\Controller\Web
     protected function onGET()
     {
         $o_art = articles\Model\Article::load($this->token['id']);
-        $s_month = $o_art->time->format('Y/m');
-        if ($this->token['year'].'/'.$this->token['month'] != $s_month) {
-            $this->output->redirect('../../'.$s_month.'/'.$this->token['id']);
+        $s_month = $o_art->time->format('Y-m');
+        if ($this->token['month'] != $s_month) {
+            $this->output->redirect('../'.$s_month.'/'.$this->token['id']);
 
             return;
         }
