@@ -11,7 +11,8 @@ INSERT INTO `User` VALUES
 DROP TABLE IF EXISTS `Article`;
 
 CREATE TABLE `Article` (
-  `Title` text NOT NULL PRIMARY KEY,
+  `Article_id` text NOT NULL PRIMARY KEY,
+  `Title` text NOT NULL,
   `Author` text NOT NULL,
   `Briefing` text NOT NULL DEFAULT '',
   `Content` text NOT NULL DEFAULT '',

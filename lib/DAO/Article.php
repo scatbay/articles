@@ -24,13 +24,14 @@ class Article extends zen\Model\Dao
     /**
      * {@inheritdoc}
      */
-    const PK = 'Title';
+    const PK = 'Article_id';
 
     /**
      * {@inheritdoc}
      */
     protected static $map = array(
-        'Title' => 'id',
+        'Article_id' => 'id',
+        'Title' => 'title',
         'Author' => 'author',
         'Briefing' => 'briefing',
         'Content' => 'content',

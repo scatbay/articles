@@ -18,6 +18,7 @@ use scatbay\articles;
 /**
  * 用户模型。
  *
+ * @property-read string           $title
  * @property-read User             $author
  * @property-read string           $briefing
  * @property-read string           $content
@@ -26,6 +27,13 @@ use scatbay\articles;
  */
 class Article extends zen\Model
 {
+    /**
+     * 标题。
+     *
+     * @var string
+     */
+    protected $title;
+
     /**
      * 作者用户实体。
      *
@@ -81,6 +89,7 @@ class Article extends zen\Model
     protected function zenGet($prop)
     {
         switch ($prop) {
+            case 'title':
             case 'briefing':
             case 'content':
             case 'markdown':
@@ -110,7 +119,7 @@ class Article extends zen\Model
         $this->markdown = $code;
         $o_mdp = new markdown\GithubMarkdown();
         $o_mdp->html5 = true;
-        $this->content = $o_mdp->parse($code);
+        $this->content = trim(preg_replace('#<h1>.+</h1>#', '', $o_mdp->parse($code)));
         $s_brief = '';
         $i_pos1 = strpos($this->content, '<p>');
         if ($i_pos1) {
@@ -152,13 +161,18 @@ class Article extends zen\Model
         if (false === $i_pos2) {
             throw new ExArticleTitleNotFound();
         }
+        $a_props['title'] = strip_tags(trim(substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1)));
+        $a_props['content'] = (4 != $i_pos1 ?
+            substr($a_props['content'], 0, $i_pos1 - 4) :
+            ''
+        ).substr($a_props['content'], 5 + $i_pos2);
         $a_props['id'] = preg_replace(
             '#-+#',
             '-',
             str_replace(
                 array(' ', '/', ':', '#', '"', "'", '<', '>'),
                 array('-', '-', '-', '', '', '', '', ''),
-                strtolower(strip_tags(trim(substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1))))
+                strtolower($a_props['title'])
             )
         );
         $i_pos1 = strpos($a_props['content'], '<p>');
