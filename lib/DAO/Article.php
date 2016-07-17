@@ -12,7 +12,7 @@ namespace scatbay\articles\DAO;
 use snakevil\zen;
 
 /**
- * 用户数据访问对象。
+ * 文章数据访问对象。
  */
 class Article extends zen\Model\Dao
 {
@@ -37,6 +37,7 @@ class Article extends zen\Model\Dao
         'Content' => 'content',
         'Time' => 'time',
         'Markdown' => 'markdown',
+        '_ArticleTag.TagID/ArticleID' => 'tag',
     );
 
     /**
@@ -45,4 +46,48 @@ class Article extends zen\Model\Dao
     protected static $types = array(
         'id' => self::TYPE_STRING,
     );
+
+    /**
+     * 关联标签。
+     *
+     * @param string $id
+     * @param string $tag_id
+     *
+     * @return bool
+     */
+    public function attach($id, $tag_id)
+    {
+        $this->getDs()
+            ->prepare('REPLACE INTO `_ArticleTag` (`ArticleID`, `TagID`) VALUES (:article, :tag);')
+            ->execute(
+                array(
+                    'article' => $id,
+                    'tag' => $tag_id,
+                )
+            );
+
+        return true;
+    }
+
+    /**
+     * 接触关联的标签。
+     *
+     * @param string $id
+     * @param string $tag_id
+     *
+     * @return bool
+     */
+    public function detach($id, $tag_id)
+    {
+        $this->getDs()
+            ->prepare('DELETE FROM `_ArticleTag` WHERE `ArticleID` = :article AND `TagID` = :tag;')
+            ->execute(
+                array(
+                    'article' => $id,
+                    'tag' => $tag_id,
+                )
+            );
+
+        return true;
+    }
 }

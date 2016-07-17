@@ -16,7 +16,7 @@ use snakevil\zen;
 use scatbay\articles;
 
 /**
- * 用户模型。
+ * 文章模型。
  *
  * @property-read string           $title
  * @property-read User             $author
@@ -133,6 +133,46 @@ class Article extends zen\Model
     }
 
     /**
+     * 获取关联地标签集合。
+     *
+     * @return TagSet
+     */
+    public function getTags()
+    {
+        return $this->fetchSet('tag', TagSet::all()->filterEq('article', $this));
+    }
+
+    /**
+     * 打标签。
+     *
+     * @param Tag $tag
+     *
+     * @return self
+     */
+    public function tag(Tag $tag)
+    {
+        $this->dao->attach($this, $tag);
+        $this->fetchSet('tag', TagSet::all()->filterEq('article', $this), true);
+
+        return $this;
+    }
+
+    /**
+     * 忽略标签。
+     *
+     * @param Tag $tag
+     *
+     * @return self
+     */
+    public function ignore(Tag $tag)
+    {
+        $this->dao->detach($this, $tag);
+        $this->fetchSet('tag', TagSet::all()->filterEq('article', $this), true);
+
+        return $this;
+    }
+
+    /**
      * 发表新文章。
      *
      * @param User   $author
@@ -141,6 +181,7 @@ class Article extends zen\Model
      * @return self
      *
      * @throws ExArticleTitleNotFound
+     * @throws ExArticleDuplicateTitle
      */
     public static function publish(User $author, $markdown)
     {
@@ -166,15 +207,7 @@ class Article extends zen\Model
             substr($a_props['content'], 0, $i_pos1 - 4) :
             ''
         ).substr($a_props['content'], 5 + $i_pos2);
-        $a_props['id'] = preg_replace(
-            '#-+#',
-            '-',
-            str_replace(
-                array(' ', '/', ':', '#', '"', "'", '<', '>'),
-                array('-', '-', '-', '', '', '', '', ''),
-                strtolower($a_props['title'])
-            )
-        );
+        $a_props['id'] = articles\Util\ID::normalize($a_props['title']);
         $i_pos1 = strpos($a_props['content'], '<p>');
         if ($i_pos1) {
             $i_pos1 += 3;

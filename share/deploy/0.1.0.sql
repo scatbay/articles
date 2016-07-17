@@ -18,3 +18,16 @@ CREATE TABLE `Article` (
 );
 CREATE INDEX `ArticleAuthor` on `Article` (`Author`, `Time`);
 CREATE INDEX `ArticleTime` on `Article` (`Time`);
+
+DROP TABLE IF EXISTS `Tag`;
+CREATE TABLE `Tag` (
+  `TagID` text NOT NULL PRIMARY KEY,
+  `Title` text NOT NULL
+);
+
+DROP TABLE IF EXISTS `_ArticleTag`;
+CREATE TABLE `_ArticleTag` (
+  `ArticleID` text NOT NULL,
+  `TagID` text NOT NULL,
+  PRIMARY KEY (`ArticleID`, `TagID`)
+);

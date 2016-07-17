@@ -30,6 +30,13 @@ class Publish extends articles\Controller\My
     protected function onPOST()
     {
         $o_art = articles\Model\Article::publish($this->self, $this->input['p:content']);
+        foreach (explode(',', $this->input['p:tags']) as $vv) {
+            $vv = trim($vv);
+            if (!$vv) {
+                continue;
+            }
+            $o_art->tag(articles\Model\Tag::cast($vv));
+        }
         $this->output->redirect($o_art->time->format('../../Y-m/').$o_art->id);
     }
 }
