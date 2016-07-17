@@ -24,18 +24,33 @@ class Sheet extends zen\Controller\Web
     protected function onGET()
     {
         $a_params = array(
-            'month' => $this->token['month'],
-            'author' => false,
+            'path' => array(
+                'month' => '',
+                'author' => '',
+                'tag' => '',
+            ),
         );
-        $o_from = new ZenType\DateTime($a_params['month'].'-1 0.0.0');
-        $o_to = clone $o_from;
-        $o_to->modify('+1 month');
-        $o_arts = articles\Model\ArticleSet::all()
-            ->filterBetween('time', $o_from, $o_to);
-        if (isset($this->input['g:by'])) {
-            $a_params['author'] = articles\Model\User::load($this->input['g:by']);
-            $o_arts = $o_arts->filterEq('author', $a_params['author']);
+        $i_depth = -1;
+        $o_arts = articles\Model\ArticleSet::all();
+        if ($this->token['month']) {
+            $a_params['path']['month'] = '/'.$this->token['month'];
+            ++$i_depth;
+            $o_from = new ZenType\DateTime($this->token['month'].'-1 0.0.0');
+            $o_to = clone $o_from;
+            $o_to->modify('+1 month');
+            $o_arts = $o_arts->filterBetween('time', $o_from, $o_to);
         }
+        if ($this->token['author']) {
+            $a_params['path']['author'] = '/@'.$this->token['author'];
+            ++$i_depth;
+            $o_arts = $o_arts->filterEq('author', $this->token['author']);
+        }
+        if ($this->token['tag']) {
+            $a_params['path']['tag'] = '/:'.$this->token['tag'];
+            ++$i_depth;
+            $o_arts = $o_arts->filterEq('tag', $this->token['tag']);
+        }
+        $a_params['path']['root'] = rtrim(str_repeat('../', max(0, $i_depth)), '/') ?: '.';
         $a_params['articles'] = $o_arts->sortBy('time', false);
 
         return new articles\View\Sheet($a_params);
