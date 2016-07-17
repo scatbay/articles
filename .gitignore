@@ -9,5 +9,6 @@
 !share/
 !var/
 !composer.json
+!INSTALL.md
 !LICENSE
 !README.md

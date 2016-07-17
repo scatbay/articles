@@ -1,0 +1,1 @@
+share/doc/INSTALL.md
