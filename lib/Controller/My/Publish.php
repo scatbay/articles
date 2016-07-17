@@ -37,6 +37,6 @@ class Publish extends articles\Controller\My
             }
             $o_art->tag(articles\Model\Tag::cast($vv));
         }
-        $this->output->redirect($o_art->time->format('../../Y-m/').$o_art->id);
+        $this->output->redirect($this->config['prefix'].$o_art->time->format('/Y-m/').$o_art->id);
     }
 }

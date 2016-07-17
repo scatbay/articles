@@ -25,7 +25,7 @@ class Article extends zen\Controller\Web
         $o_art = articles\Model\Article::load($this->token['id']);
         $s_month = $o_art->time->format('Y-m');
         if ($this->token['month'] != $s_month) {
-            $this->output->redirect('../'.$s_month.'/'.$this->token['id']);
+            $this->output->redirect($this->config['prefix'].'/'.$s_month.'/'.$this->token['id']);
 
             return;
         }
@@ -33,6 +33,7 @@ class Article extends zen\Controller\Web
         return new articles\View\Article(
             array(
                 'article' => $o_art,
+                'prefix' => $this->config['prefix'],
             )
         );
     }

@@ -24,6 +24,7 @@ class Dashboard extends articles\Controller\My
         return new articles\View\My\Dashboard(
             array(
                 'i' => $this->self,
+                'prefix' => $this->config['prefix'],
             )
         );
     }

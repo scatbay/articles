@@ -23,8 +23,7 @@ class Logout extends zen\Controller\Web
     {
         if (isset($this->cookies['i'])) {
             $this->cookies['i']->expire = 0;
-            error_log(serialize($this->cookies['i']), 3, '/tmp/debug.log');
         }
-        $this->output->redirect('..');
+        $this->output->redirect($this->config['prefix'].'/');
     }
 }

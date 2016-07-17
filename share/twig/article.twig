@@ -3,19 +3,19 @@
     <h1>{{article.title}}</h1>
     <address>
       作者：
-      <a href="../@{{article.author.id}}">{{article.author.id}}</a>
+      <a href="{{prefix ~ '/@' ~ article.author.id}}">{{article.author.id}}</a>
     </address>
     {% set time = article.time %}
     <address>
       发表于：
-      <a href="{{time.format('../Y-m')}}">{{time.format('Y 年 n 月')}}</a>
+      <a href="{{prefix ~ '/' ~ time.format('Y-m')}}">{{time.format('Y 年 n 月')}}</a>
       {{time.format('j 日 G 时')}}
     </address>
     {% if 0 < article.tags|length %}
       <ul>
         {% for tag in article.tags %}
           <li>
-            <a href="../:{{tag.id}}">{{tag.title}}</a>
+            <a href="{{prefix ~ '/:' ~ tag.id}}">{{tag.title}}</a>
           </li>
         {% endfor %}
       </ul>

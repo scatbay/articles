@@ -25,16 +25,15 @@ class Sheet extends zen\Controller\Web
     {
         $a_params = array(
             'path' => array(
+                'root' => $this->config['prefix'],
                 'month' => '',
                 'author' => '',
                 'tag' => '',
             ),
         );
-        $i_depth = -1;
         $o_arts = articles\Model\ArticleSet::all();
         if ($this->token['month']) {
             $a_params['path']['month'] = '/'.$this->token['month'];
-            ++$i_depth;
             $o_from = new ZenType\DateTime($this->token['month'].'-1 0.0.0');
             $o_to = clone $o_from;
             $o_to->modify('+1 month');
@@ -42,15 +41,12 @@ class Sheet extends zen\Controller\Web
         }
         if ($this->token['author']) {
             $a_params['path']['author'] = '/@'.$this->token['author'];
-            ++$i_depth;
             $o_arts = $o_arts->filterEq('author', $this->token['author']);
         }
         if ($this->token['tag']) {
             $a_params['path']['tag'] = '/:'.$this->token['tag'];
-            ++$i_depth;
             $o_arts = $o_arts->filterEq('tag', $this->token['tag']);
         }
-        $a_params['path']['root'] = rtrim(str_repeat('../', max(0, $i_depth)), '/') ?: '.';
         $a_params['articles'] = $o_arts->sortBy('time', false);
 
         return new articles\View\Sheet($a_params);

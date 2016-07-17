@@ -8,6 +8,7 @@
  */
 
 return array(
+    'prefix' => '/a',
     'password' => array(
         'salt' => 'Jul. 15, 2016'
     ),

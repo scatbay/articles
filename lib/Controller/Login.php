@@ -22,7 +22,7 @@ class Login extends zen\Controller\Web
      */
     protected function onGET()
     {
-        $this->output->redirect('.', true);
+        $this->output->redirect($this->config['prefix'].'/', true);
     }
 
     /**
@@ -38,6 +38,6 @@ class Login extends zen\Controller\Web
         );
         $this->cookies['i'] = $o_user->tokenize();
         $this->cookies['i']->expire = '+1week';
-        $this->output->redirect('i');
+        $this->output->redirect($this->config['prefix'].'/s/i');
     }
 }
