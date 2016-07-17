@@ -10,8 +10,8 @@ $s_ns = 'scatbay\\articles\\Controller\\';
 
 return array(
     '/' => $s_ns.'Index',
-    '/(?P<month>\d{4}-\d{2})/(?P<id>.+)' => $s_ns.'Article',
     '(?:|/(?P<month>\d{4}-\d{2}))(?:|/@(?P<author>[^/]+))(?:|/:(?P<tag>[^/]+))' => $s_ns.'Sheet',
+    '/(?P<month>\d{4}-\d{2})/(?P<id>.+)' => $s_ns.'Article',
     '/s/' => array(
         'login' => $s_ns.'Login',
         'logout' => $s_ns.'Logout',

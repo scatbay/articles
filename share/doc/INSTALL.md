@@ -12,8 +12,8 @@ ScatBay/Articles 部署指南
 ---
 
 ```
-sudo -u www-data -H -s
 cd /var/www/scatbay.com
+sudo -u www-data -H -s
 git clone git://github.com/scatbay/articles .articles.git
 ```
 
@@ -72,7 +72,19 @@ ln -s ../.articles.git/share/static a
 
 *__NOTICE__ 如需部署至其它域，请自行调整。*
 
-6. 配置 [nginx](http://nginx.org/)
+6. 配置定时任务
+---
+
+```
+exit # sudo www-data, pwd /var/www/scatbay.com
+sudo -s
+chown root .articles.git/etc/cron.d/articles
+ln -s /var/www/scatbay.com/.articles.git/etc/cron.d/articles /etc/cron.d/scatbay-a
+```
+
+*__NOTICE__ 如需部署至其它域，请自行调整执行指令。并修改 `/var/www/scatbay.com/.articles.git/etc/cron.d/articles` 文件内容至正确地路径。*
+
+7. 配置 [nginx](http://nginx.org/)
 ---
 
 在 `scatbay.com` 域的配置中，增加 `include /var/www/scatbay.com/.articles.git/etc/nginx/@.conf` 指令。

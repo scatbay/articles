@@ -20,6 +20,30 @@ class Sheet extends zen\Controller\Web
 {
     /**
      * {@inheritdoc}
+     *
+     * @var int
+     */
+    const CACHE_LIFETIME = 60;
+
+    /**
+     * 静态缓存文件路径。
+     *
+     * @var string
+     */
+    protected $cachePath;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    protected function getCachePath()
+    {
+        return $this->cachePath;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function onGET()
     {
@@ -48,6 +72,7 @@ class Sheet extends zen\Controller\Web
             $o_arts = $o_arts->filterEq('tag', $this->token['tag']);
         }
         $a_params['articles'] = $o_arts->sortBy('time', false);
+        $this->cachePath = substr(urldecode($this->input->getPath()), strlen($this->config['prefix'])).'/index.html';
 
         return new articles\View\Sheet($a_params);
     }

@@ -19,16 +19,41 @@ class Article extends zen\Controller\Web
 {
     /**
      * {@inheritdoc}
+     *
+     * @var int
+     */
+    const CACHE_LIFETIME = 2592000;
+
+    /**
+     * 静态缓存文件路径。
+     *
+     * @var string
+     */
+    protected $cachePath;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
+    protected function getCachePath()
+    {
+        return $this->cachePath;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     protected function onGET()
     {
         $o_art = articles\Model\Article::load($this->token['id']);
         $s_month = $o_art->time->format('Y-m');
         if ($this->token['month'] != $s_month) {
-            $this->output->redirect($this->config['prefix'].'/'.$s_month.'/'.$this->token['id']);
+            $this->output->redirect($this->config['prefix'].'/'.$s_month.'/'.$o_art->id);
 
             return;
         }
+        $this->cachePath = $s_month.'/'.$o_art->id.'/index.html';
 
         return new articles\View\Article(
             array(
