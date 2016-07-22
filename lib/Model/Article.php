@@ -213,7 +213,7 @@ class Article extends zen\Model
             $i_pos1 += 3;
             $i_pos2 = strpos($a_props['content'], '</p>');
             if ($i_pos2) {
-                $a_props['briefing'] = strip_tags(substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1));
+                $a_props['briefing'] = substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1);
             }
         }
         try {
