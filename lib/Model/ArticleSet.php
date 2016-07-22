@@ -33,4 +33,14 @@ class ArticleSet extends ZenModel\Set
     {
         return articles\DAO\Article::singleton();
     }
+
+    /**
+     * 按月份统计文章数量。
+     *
+     * @return int[][]
+     */
+    public static function statsByMonth()
+    {
+        return articles\DAO\Article::singleton()->statsByMonth();
+    }
 }

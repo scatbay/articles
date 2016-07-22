@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <title>{% if __TWIG__.title %}{{ __TWIG__.title }} - {% endif %}文库 - 暴雨湾下</title>
+  {% if __TWIG__.keywords %}<meta name="keywords" content="{{ __TWIG__.keywords }}">{% endif %}
+  {% if __TWIG__.description %}<meta name="description" content="{{ __TWIG__.description }}">{% endif %}
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <link href="//s.scatbay.com/a/apple.png" rel="apple-touch-icon">
+  <link href="//s.scatbay.com/a/logo.png" rel="shortcut icon">
+  <link href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
+  <link href="//s.scatbay.com/a/main.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="page-header">
+    <div class="container">HEADER</div>
+  </div>
+  <div class="container">
+    {% block main %}{% endblock %}
+  </div>
+  <div class="page-footer">
+    <div class="container">FOOTER</div>
+  </div>
+</body>
+</html>

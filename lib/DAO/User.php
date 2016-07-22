@@ -32,6 +32,7 @@ class User extends zen\Model\Dao
     protected static $map = array(
         'Account' => 'id',
         'Password' => 'password',
+        'Articles' => 'articles',
     );
 
     /**

@@ -1,10 +1,12 @@
 DROP TABLE IF EXISTS `User`;
 CREATE TABLE `User` (
   `Account` text NOT NULL PRIMARY KEY,
-  `Password` text NOT NULL
+  `Password` text NOT NULL,
+  `Articles` integer NOT NULL DEFAULT 0
 );
+CREATE INDEX `UserArticles` on `User` (`Articles`);
 INSERT INTO `User` VALUES
-  ('snakevil', '2c4d9ab198a367cba8b988bc993b7134');
+  ('snakevil', '2c4d9ab198a367cba8b988bc993b7134', 0);
 
 DROP TABLE IF EXISTS `Article`;
 CREATE TABLE `Article` (
@@ -18,6 +20,9 @@ CREATE TABLE `Article` (
 );
 CREATE INDEX `ArticleAuthor` on `Article` (`Author`, `Time`);
 CREATE INDEX `ArticleTime` on `Article` (`Time`);
+CREATE TRIGGER `UserArticlesIncrease` AFTER INSERT ON `Article` BEGIN
+  UPDATE `User` SET `Articles` = 1 + `Articles` WHERE `Account` = NEW.`Author`;
+END;
 
 DROP TABLE IF EXISTS `Tag`;
 CREATE TABLE `Tag` (

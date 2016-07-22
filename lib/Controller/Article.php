@@ -59,6 +59,10 @@ class Article extends zen\Controller\Web
             array(
                 'article' => $o_art,
                 'prefix' => $this->config['prefix'],
+                'authors' => articles\Model\UserSet::all()
+                    ->filterGt('articles', 0)
+                    ->sortBy('articles', false),
+                'calendar' => articles\Model\ArticleSet::statsByMonth(),
             )
         );
     }

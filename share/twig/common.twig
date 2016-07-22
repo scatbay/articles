@@ -1,0 +1,45 @@
+{% extends 'base.twig' %}
+
+{% block main %}
+  <div class="row">
+    <div class="cell-xs-12 cell-l-9 column">
+      <nav class="column-title">
+        <ul class="breadcrumb">
+          {% block breadcrumb %}
+          {% endblock %}
+        </ul>
+      </nav>
+      {% block content %}
+      {% endblock %}
+    </div>
+    <aside class="cell-xs-0 cell-l-3">
+      <section class="column">
+        <h2 class="column-title">Heroes of Bay</h2>
+        <ol class="column-content">
+          {% for user in authors %}
+            <li><a href="{{ prefix ~ '/@' ~ user.id }}">@{{ user.id }}</a></li>
+          {% endfor %}
+        </ol>
+      </section>
+      <section class="column">
+        <h2 class="column-title">时间</h2>
+        <div class="column-content">
+          {% for year, months in calendar %}
+            <h3>{{ year }}</h3>
+            <ol class="row">
+              {% for month in 1..12 %}
+                <li class="cell-s-4 text-right">
+                  {% if months[month] is defined %}
+                    <a href="{{ '%s/%s-%02d'|format(prefix, year, month) }}">{{ month }}月</a>
+                  {% else %}
+                    {{ month }}月
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ol>
+          {% endfor %}
+        </div>
+      </section>
+    </aside>
+  </div>
+{% endblock %}

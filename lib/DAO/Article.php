@@ -90,4 +90,27 @@ class Article extends zen\Model\Dao
 
         return true;
     }
+
+    /**
+     * 按月份统计文章数量。
+     *
+     * @return int[][]
+     */
+    public function statsByMonth()
+    {
+        $o_stmt = $this->getDs()
+            ->prepare('SELECT strftime("%Y-%m", `Time`) m, count(*) c FROM `Article` GROUP BY m ORDER BY m DESC;')
+            ->execute();
+        $a_ret = array();
+        foreach ($o_stmt->fetchAll() as $a_row) {
+            list($s_year, $s_month) = explode('-', $a_row['m']);
+            if (!array_key_exists($s_year, $a_ret)) {
+                $a_ret[$s_year] = array();
+            }
+            $a_ret[$s_year][ltrim($s_month, '0')] = $a_row['c'];
+        }
+        $o_stmt->closeCursor();
+
+        return $a_ret;
+    }
 }
