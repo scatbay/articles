@@ -1,4 +1,10 @@
+{% set __PAGE__ = 'article' %}
+
 {% extends 'common.twig' %}
+
+{% block js %}
+  <script src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+{% endblock %}
 
 {% block content %}
   <article class="column-content">
@@ -26,7 +32,7 @@
       {% endif %}
     </header>
     <div class="markdown">
-      {{ article.content|raw }}
+      {{ article.content|lazy|raw }}
     </div>
   </article>
 {% endblock %}

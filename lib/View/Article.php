@@ -9,12 +9,10 @@
 
 namespace scatbay\articles\View;
 
-use snakevil\zen;
-
 /**
  * 文章阅读页视图。
  */
-class Article extends zen\View\Twig
+class Article extends Twig
 {
     /**
      * {@inheritdoc}

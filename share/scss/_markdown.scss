@@ -87,8 +87,13 @@
   }
 
   img {
-    display: block;
+    display: inline;
     border: 1px solid $color-border;
+    @extend .text-center;
+
+    &.lazy {
+      display: none;
+    }
   }
 
   th, td {

@@ -9,12 +9,12 @@
 
 namespace scatbay\articles\View\My;
 
-use snakevil\zen;
+use scatbay\articles;
 
 /**
  * 个人管理中心入口页视图。
  */
-class Dashboard extends zen\View\Twig
+class Dashboard extends articles\View\Twig
 {
     /**
      * {@inheritdoc}
@@ -22,4 +22,9 @@ class Dashboard extends zen\View\Twig
      * @var string
      */
     const TWIG = 'my/dashboard.twig';
+
+    public function getName()
+    {
+        return 'articles';
+    }
 }
