@@ -1,33 +1,41 @@
-{% if not articles|length %}
-  <address>Oops...</address>
-{% else %}
-  <ul>
-    {% for article in articles %}
-      <li>
-        <article>
-          <address>
-            <a href="{{path.root ~ article.time.format('/Y-m') ~ path.author ~ path.tag}}">{{article.time.format('Y 年 n 月')}}</a>
-            {{article.time.format('j 日 G 时')}}
-          </address>
-          <h3>
-            <a href="{{path.root ~ article.time.format('/Y-m/') ~ article.id}}">{{article.title}}</a>
-          </h3>
-          <address>
-            作者：
-            <a href="{{path.root ~ path.month ~ '/@' ~ article.author.id ~ path.tag}}">{{article.author.id}}</a>
-          </address>
-          <blockquote>{{article.briefing}}</blockquote>
-          {% if 0 < article.tags|length %}
-            <ul>
-              {% for tag in article.tags %}
-                <li>
-                  <a href="{{path.root ~ path.month ~ path.author ~ '/:' ~ tag.id}}">{{tag.title}}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </article>
-      </li>
-    {% endfor %}
-  </ul>
-{% endif %}
+{% extends 'common.twig' %}
+
+{% block breadcrumb %}
+  <li><a href="{{ prefix }}/">全部</a></li>
+{% endblock %}
+
+{% block content %}
+  {% if not articles|length %}
+    <address>Oops...</address>
+  {% else %}
+    <ul>
+      {% for article in articles %}
+        <li>
+          <article>
+            <address>
+              <a href="{{ prefix ~ article.time.format('/Y-m') ~ path.author ~ path.tag}}">{{article.time.format('Y 年 n 月')}}</a>
+              {{article.time.format('j 日 G 时')}}
+            </address>
+            <h3>
+              <a href="{{ prefix ~ article.time.format('/Y-m/') ~ article.id}}">{{article.title}}</a>
+            </h3>
+            <address>
+              作者：
+              <a href="{{ prefix ~ path.month ~ '/@' ~ article.author.id ~ path.tag}}">{{article.author.id}}</a>
+            </address>
+            <blockquote>{{article.briefing}}</blockquote>
+            {% if 0 < article.tags|length %}
+              <ul>
+                {% for tag in article.tags %}
+                  <li>
+                    <a href="{{ prefix ~ path.month ~ path.author ~ '/:' ~ tag.id}}">{{tag.title}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
