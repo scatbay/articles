@@ -7,13 +7,13 @@
 {% block content %}
   <article class="column-content">
     <header>
-      <h1>{{article.title}}</h1>
+      <h1>{{ article.title }}</h1>
       <address>
-        <a href="{{prefix ~ '/@' ~ article.author.id}}">@{{article.author.id}}</a>
+        <a href="{{ prefix ~ '/@' ~ article.author.id }}">@{{ article.author.id }}</a>
       </address>
       {% set time = article.time %}
       <address>
-        <a href="{{prefix ~ '/' ~ time.format('Y-m')}}">{{time.format('Y年n月')}}</a>{{time.format('j日')}}
+        <a href="{{ prefix ~ '/' ~ time.format('Y-m') }}">{{ time.format('Y年n月') }}</a>{{ time.format('j日') }}
       </address>
       {% if 0 < article.tags|length %}
         <nav class="tags">
@@ -21,7 +21,7 @@
             <li class="icon-tag"></li>
             {% for tag in article.tags %}
               <li class="tags-item">
-                <a href="{{prefix ~ '/:' ~ tag.id}}">{{tag.title}}</a>
+                <a href="{{ prefix ~ '/:' ~ tag.id }}">{{ tag.title }}</a>
               </li>
             {% endfor %}
           </ul>
@@ -29,7 +29,7 @@
       {% endif %}
     </header>
     <div class="markdown">
-      {{article.content|raw}}
+      {{ article.content|raw }}
     </div>
   </article>
 {% endblock %}

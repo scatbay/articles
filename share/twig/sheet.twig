@@ -2,40 +2,57 @@
 
 {% block breadcrumb %}
   <li><a href="{{ prefix }}/">全部</a></li>
+  {% if path.month %}
+    <li><a href="{{ prefix ~ path.month }}">{{ path.month|trim('/') }}</a></li>
+  {% endif %}
+  {% if path.author %}
+    <li><a href="{{ prefix ~ path.author }}">{{ path.author|trim('/') }}</a></li>
+  {% endif %}
+  {% if path.tag %}
+    <li><a href="{{ prefix ~ path.tag }}">{{ path.tag|trim('/')|upper }}</a></li>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-  {% if not articles|length %}
-    <address>Oops...</address>
-  {% else %}
-    <ul>
-      {% for article in articles %}
-        <li>
-          <article>
-            <address>
-              <a href="{{ prefix ~ article.time.format('/Y-m') ~ path.author ~ path.tag}}">{{article.time.format('Y 年 n 月')}}</a>
-              {{article.time.format('j 日 G 时')}}
-            </address>
-            <h3>
-              <a href="{{ prefix ~ article.time.format('/Y-m/') ~ article.id}}">{{article.title}}</a>
-            </h3>
-            <address>
-              作者：
-              <a href="{{ prefix ~ path.month ~ '/@' ~ article.author.id ~ path.tag}}">{{article.author.id}}</a>
-            </address>
-            <blockquote>{{article.briefing}}</blockquote>
-            {% if 0 < article.tags|length %}
-              <ul>
-                {% for tag in article.tags %}
-                  <li>
-                    <a href="{{ prefix ~ path.month ~ path.author ~ '/:' ~ tag.id}}">{{tag.title}}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </article>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+  <div class="column-content">
+    {% if not articles|length %}
+      <address>Oops...</address>
+    {% else %}
+      <ul class="row">
+        {% for article in articles %}
+          <li class="cell-xs-12 cell-l-4 column-item">
+            <article>
+              <header>
+                <h1 class="column-item-title">
+                  <a href="{{ prefix ~ article.time.format('/Y-m/') ~ article.id }}">{{ article.title }}</a>
+                </h1>
+                <address>
+                  <a href="{{ prefix ~ path.month ~ '/@' ~ article.author.id ~ path.tag }}">@{{ article.author.id }}</a>
+                </address>
+                {% set time = article.time %}
+                <address>
+                  <a href="{{ prefix ~ time.format('/Y-m') ~ path.author ~ path.tag }}">{{ time.format('Y年n月') }}</a>{{ time.format('j日') }}
+                </address>
+                <div class="markdown">
+                  <p>{{ article.briefing|raw }}</p>
+                </div>
+                {% if 0 < article.tags|length %}
+                  <nav class="tags">
+                    <span class="icon-tag"></span>
+                    <ul>
+                      {% for tag in article.tags %}
+                        <li class="tags-item">
+                          <a href="{{ prefix ~ '/:' ~ tag.id }}">{{ tag.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </nav>
+                {% endif %}
+              </header>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
 {% endblock %}

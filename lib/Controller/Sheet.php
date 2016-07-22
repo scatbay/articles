@@ -48,12 +48,16 @@ class Sheet extends zen\Controller\Web
     protected function onGET()
     {
         $a_params = array(
+            'prefix' => $this->config['prefix'],
             'path' => array(
-                'root' => $this->config['prefix'],
                 'month' => '',
                 'author' => '',
                 'tag' => '',
             ),
+            'authors' => articles\Model\UserSet::all()
+                ->filterGt('articles', 0)
+                ->sortBy('articles', false),
+            'calendar' => articles\Model\ArticleSet::statsByMonth(),
         );
         $o_arts = articles\Model\ArticleSet::all();
         if ($this->token['month']) {
@@ -72,7 +76,7 @@ class Sheet extends zen\Controller\Web
             $o_arts = $o_arts->filterEq('tag', $this->token['tag']);
         }
         $a_params['articles'] = $o_arts->sortBy('time', false);
-        $this->cachePath = substr(urldecode($this->input->getPath()), strlen($this->config['prefix'])).'/index.html';
+        $this->cachePath = substr(urldecode($this->input->getPath()), strlen($a_params['prefix'])).'/index.html';
 
         return new articles\View\Sheet($a_params);
     }
