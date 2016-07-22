@@ -36,8 +36,7 @@
         "bin-dir": "bin"
     },
     "scripts": {
-        "css": [
-            "sass -t compressed share/scss/main.scss:share/static/main.min.css"
-        ]
+        "css": "sass -t compressed share/scss/main.scss:share/static/main.min.css",
+        "js": "uglify -s share/js/*.js -o share/static/main.min.js"
     }
 }
