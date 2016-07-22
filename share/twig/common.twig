@@ -37,11 +37,11 @@
             <ol class="row">
               {% for month in 1..12 %}
                 <li class="cell-s-4 text-right">
-                  {% if months[month] is defined %}
+                  {%- if months[month] is defined -%}
                     <a href="{{ '%s/%s-%02d'|format(prefix, year, month) }}">{{ month }}月</a>
-                  {% else %}
-                    {{ month }}月
-                  {% endif %}
+                  {%- else -%}
+                    {{- month ~ '月' -}}
+                  {%- endif -%}
                 </li>
               {% endfor %}
             </ol>

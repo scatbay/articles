@@ -9,7 +9,8 @@
       </address>
       {% set time = article.time %}
       <address>
-        <a href="{{ prefix ~ '/' ~ time.format('Y-m') }}">{{ time.format('Y年n月') }}</a>{{ time.format('j日') }}
+        <a href="{{ prefix ~ '/' ~ time.format('Y-m') }}">{{ time.format('Y年n月') }}</a>
+        {{- time.format('j日') -}}
       </address>
       {% if 0 < article.tags|length %}
         <nav class="tags">

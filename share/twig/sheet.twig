@@ -30,7 +30,8 @@
                 </address>
                 {% set time = article.time %}
                 <address>
-                  <a href="{{ prefix ~ time.format('/Y-m') ~ path.author ~ path.tag }}">{{ time.format('Y年n月') }}</a>{{ time.format('j日') }}
+                  <a href="{{ prefix ~ time.format('/Y-m') ~ path.author ~ path.tag }}">{{ time.format('Y年n月') }}</a>
+                  {{- time.format('j日') -}}
                 </address>
                 <div class="markdown">
                   <p>{{ article.briefing|raw }}</p>
