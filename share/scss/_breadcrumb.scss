@@ -2,5 +2,10 @@
   li {
     @extend .text-middle;
     display: inline-block;
+
+    &:nth-child(n+3):before {
+        content: '/';
+        margin-right: .25em;
+    }
   }
 }

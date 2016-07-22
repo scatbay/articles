@@ -2,22 +2,34 @@
   color: $color-hilite;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1.75rem;
+  @include clear-fix;
 
-  li {
-    @extend .text-middle;
-    display: inline-block;
+  [class^="icon-"], [class*=" icon-"] {
+    position: absolute;
+    left: 0;
+    top: .25rem;
+  }
+
+  .column-item & {
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
   }
 }
 
 .tags-item {
+  float: left;
   font-size: .8rem;
   background-color: $color-hilite;
   padding: .2rem .8rem;
   margin: .25rem .25rem;
   @include border-radius(1rem);
   text-transform: uppercase;
+  white-space: nowrap;
 
   a {
     color: $color-reverse;
+    text-decoration: none;
   }
 }
