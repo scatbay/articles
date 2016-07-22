@@ -18,6 +18,7 @@
       {% if 0 < article.tags|length %}
         <nav class="tags">
           <ul>
+            <li class="icon-tag"></li>
             {% for tag in article.tags %}
               <li class="tags-item">
                 <a href="{{prefix ~ '/:' ~ tag.id}}">{{tag.title}}</a>

@@ -1,0 +1,23 @@
+.tags {
+  color: $color-hilite;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  li {
+    @extend .text-middle;
+    display: inline-block;
+  }
+}
+
+.tags-item {
+  font-size: .8rem;
+  background-color: $color-hilite;
+  padding: .2rem .8rem;
+  margin: .25rem .25rem;
+  @include border-radius(1rem);
+  text-transform: uppercase;
+
+  a {
+    color: $color-reverse;
+  }
+}

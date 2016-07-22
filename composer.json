@@ -34,5 +34,10 @@
     "config": {
         "vendor-dir": "include",
         "bin-dir": "bin"
+    },
+    "scripts": {
+        "css": [
+            "sass -t compressed share/scss/main.scss:share/static/main.min.css"
+        ]
     }
 }

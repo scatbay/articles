@@ -5,6 +5,7 @@
     <div class="cell-xs-12 cell-l-9 column">
       <nav class="column-title">
         <ul class="breadcrumb">
+          <li class="icon-clipboard"></li>
           {% block breadcrumb %}
           {% endblock %}
         </ul>
@@ -14,7 +15,10 @@
     </div>
     <aside class="cell-xs-0 cell-l-3">
       <section class="column">
-        <h2 class="column-title">Heroes of Bay</h2>
+        <h2 class="column-title">
+          <span class="icon-group"></span>
+          <span>Heroes of Bay</span>
+        </h2>
         <ol class="column-content">
           {% for user in authors %}
             <li><a href="{{ prefix ~ '/@' ~ user.id }}">@{{ user.id }}</a></li>
@@ -22,7 +26,10 @@
         </ol>
       </section>
       <section class="column">
-        <h2 class="column-title">时间</h2>
+        <h2 class="column-title">
+          <span class="icon-calender"></span>
+          <span>时间</span>
+        </h2>
         <div class="column-content">
           {% for year, months in calendar %}
             <h3>{{ year }}</h3>

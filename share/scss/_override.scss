@@ -1,0 +1,45 @@
+html {
+  font-family: $font-sans-serif;
+  line-height: 1.5;
+  color: $color-default;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: $color-title;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+address {
+  font-style: normal;
+}
+
+ol,
+ul,
+p,
+blockquote,
+pre {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: $color-hilite;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+}

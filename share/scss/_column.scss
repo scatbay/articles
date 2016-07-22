@@ -1,0 +1,26 @@
+.column {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  h2,
+  h3 {
+    color: $color-default;
+  }
+}
+
+.column-title {
+  font-size: 1.8rem;
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: 3rem;
+  font-weight: normal;
+
+  > * {
+    @extend .text-middle;
+  }
+}
+
+.column-content {
+  padding-left: floor($gutter / 2);
+  padding-right: ceil($gutter / 2);
+}

@@ -1,0 +1,6 @@
+.breadcrumb {
+  li {
+    @extend .text-middle;
+    display: inline-block;
+  }
+}

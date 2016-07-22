@@ -1,0 +1,28 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: floor($gutter / 2);
+  padding-right: ceil($gutter / 2);
+  @include border-box;
+
+  @media (min-width: $screen-s) {
+    width: $screen-s;
+  }
+  @media (min-width: $screen-m) {
+    width: $screen-m;
+  }
+  @media (min-width: $screen-l) {
+    width: $screen-l;
+  }
+  @media (min-width: $screen-xl) {
+    width: $screen-xl;
+  }
+}
+
+/* .container */ .row {
+  margin-left: floor($gutter / -2);
+  margin-right: ceil($gutter / -2);
+  @include clear-fix;
+}
+
+@include grids;

@@ -1,0 +1,26 @@
+$cols: 12;
+$gutter: 2rem;
+$screen-s: 480px;
+$screen-m: 768px;
+$screen-l: 1024px;
+$screen-xl: 1200px;
+$color-default: #999;
+$color-text: #333;
+$color-title: #000;
+$color-border: #eee;
+$color-reverse: #fff;
+$color-hilite: #35c627;
+$font-serif: "Times New Roman", serif;
+$font-sans-serif: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+
+@import 'mixin/misc';
+@import 'mixin/grid';
+
+@import 'override';
+@import 'grid';
+@import 'iconfont';
+@import 'breadcrumb';
+@import 'column';
+@import 'text';
+@import 'tags';
+@import 'markdown';
