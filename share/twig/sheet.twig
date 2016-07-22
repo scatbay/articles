@@ -1,7 +1,6 @@
 {% extends 'common.twig' %}
 
 {% block breadcrumb %}
-  <li><a href="{{ prefix }}/">全部</a></li>
   {% if path.month %}
     <li><a href="{{ prefix ~ path.month }}">{{ path.month|trim('/') }}</a></li>
   {% endif %}

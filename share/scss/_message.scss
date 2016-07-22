@@ -1,0 +1,13 @@
+.page-warning {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: $color-msg-warn;
+  color: $color-text;
+  border-bottom: 1px solid $color-border;
+  padding: .5rem;
+  font-weight: bold;
+  @extend .text-center;
+}

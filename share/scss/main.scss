@@ -10,6 +10,7 @@ $color-title: #000;
 $color-border: #eee;
 $color-reverse: #fff;
 $color-hilite: #35c627;
+$color-msg-warn: orange;
 $font-serif: "Times New Roman", serif;
 $font-sans-serif: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
 
@@ -24,3 +25,4 @@ $font-sans-serif: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", 
 @import 'text';
 @import 'tags';
 @import 'markdown';
+@import 'message';

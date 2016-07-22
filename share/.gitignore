@@ -4,6 +4,7 @@
 !cron/
 !deploy/
 !doc/
+!js/
 !public/
 !scss/
 !static/
