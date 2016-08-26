@@ -1,22 +1,21 @@
 location /a/ {
     if ($uri ~ ^/a/.*/$) {
-        rewrite     ^(.*)/$ $1 permanent;
+        rewrite                 ^(.*)/$ $1 permanent;
     }
-    try_files       $uri $uri/index.html @articles-cache;
+    try_files                   $uri $uri/index.html @articles-cache;
 }
 
 location @articles-cache {
     internal;
-    rewrite     ^(/a)/(.*)$ $1/.cache/$2 break;
-    try_files   $uri $uri/index.html @articles-php;
+    rewrite                     ^(/a)/(.*)$ $1/.cache/$2 break;
+    try_files                   $uri $uri/index.html @articles-php;
 }
 
 location @articles-php {
     internal;
-    root                        /var/www/scatbay.com/.articles.git/libexec;
-    rewrite                     ^/a/.cache(/.*)$ /fcgi.php$1 break;
+    rewrite                     ^/a/.cache(/.*)$ /a/.cgi-bin/fcgi.php$1 break;
     fastcgi_split_path_info     ^(.+\.php)(/.*)$;
-    fastcgi_pass                unix:/var/run/php5-fpm.sock;
+    fastcgi_pass                php;
     include                     fastcgi_params;
     fastcgi_param               SCRIPT_FILENAME $document_root$fastcgi_script_name;
     fastcgi_param               PATH_INFO       $fastcgi_path_info;

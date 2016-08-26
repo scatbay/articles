@@ -3,5 +3,6 @@
 !.gitignore
 !*/
 !.cache
+!.cgi-bin
 !favicon.ico
 !*.html

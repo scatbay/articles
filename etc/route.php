@@ -20,5 +20,5 @@ return array(
             '/publish' => $s_ns.'My\\Publish',
         ),
     ),
-    '.*' => '@404',
+    '.*' => '@302:/a/',
 );
