@@ -8,4 +8,6 @@ DB_FILE=/mnt/db/articles.db
 chown nobody:nobody "$DB_FILE"
 chmod 0600 "$DB_FILE"
 
-ln -s "$DB_FILE" `dirname "$DB_TPL"`
+DB_LINK=`dirname "$DB_TPL"``basename "$DB_FILE"`
+
+[ -f "$DB_LINK" ] || ln -s "$DB_FILE" "$DB_LINK"
