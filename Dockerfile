@@ -5,7 +5,8 @@ VOLUME /mnt/db
 
 RUN apk add --no-cache php5-ctype php5-pdo_sqlite php5-zlib \
  && mkdir -p /var/www/scatbay.com/_/share/public \
-    /var/www/scatbay.com/_/share/static
+    /var/www/scatbay.com/_/share/static \
+ && chown -R nobody:nobody /var/lib/nginx
 ADD . /var/www/scatbay.com/_articles/
 
 RUN cd /var/www/scatbay.com \
