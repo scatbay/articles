@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+echo "[services.d] starting service: cron"
+
+crond -f -L /var/log/crond.log

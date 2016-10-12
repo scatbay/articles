@@ -1,6 +1,6 @@
 *
-
 !.gitignore
+
 !cron/
 !deploy/
 !doc/
@@ -9,3 +9,4 @@
 !scss/
 !static/
 !twig/
+!docker/
