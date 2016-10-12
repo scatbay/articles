@@ -1,6 +1,6 @@
 *
-
 !.gitignore
+
 !bin/
 !etc/
 !include/
@@ -12,3 +12,5 @@
 !INSTALL.md
 !LICENSE
 !README.md
+!Dockerfile
+!.dockerignore

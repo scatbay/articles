@@ -1,0 +1,6 @@
+.*
+Dockerfile
+@DEV
+*.md
+LICENSE
+var/db/articles.db

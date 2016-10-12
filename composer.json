@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "ext-ctype": "*",
         "ext-pdo_sqlite": "*",
         "snakevil/zen": "@dev",
         "zen/web-application": "@dev",
