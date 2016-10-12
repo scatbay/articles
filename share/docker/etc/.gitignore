@@ -4,3 +4,4 @@
 !crontabs/
 !services.d/
 !nginx/
+!cont-init.d/

@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+DB_TPL=/var/www/scatbay.com/_articles/var/db/articles.db~dist
+DB_FILE=/mnt/db/articles.db
+
+[ -f "$DB_FILE" ] || cp "$DB_TPL" "$DB_FILE"
+
+chown nobody:nobody "$DB_FILE"
+chmod 0600 "$DB_FILE"
+
+ln -s "$DB_FILE" `dirname "$DB_TPL"`
