@@ -49,6 +49,7 @@ class Article extends zen\View\Twig
     {
         return array(
             new Twig_SimpleFilter('lazy', array($this, 'twigLazyFilter')),
+            new Twig_SimpleFilter('hash', array($this, 'twigHashFilter')),
         );
     }
 
@@ -62,5 +63,17 @@ class Article extends zen\View\Twig
     public function twigLazyFilter($html)
     {
         return str_replace('<img src="', '<img class="lazy" data-src="', $html);
+    }
+
+    /**
+     * 将字符串转换为其 SHA1 效验值。
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    public function twigHashFilter($string)
+    {
+        return sha1($string);
     }
 }

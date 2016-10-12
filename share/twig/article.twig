@@ -34,5 +34,8 @@
     <div class="markdown">
       {{ article.content|lazy|raw }}
     </div>
+    <footer>
+      <div id="SOHUCS" sid="{{ article.id|hash }}"></div>
+    </footer>
   </article>
 {% endblock %}

@@ -39,7 +39,7 @@
     },
     "scripts": {
         "css": "sass -t compressed share/scss/main.scss:share/static/main.min.css",
-        "js": "uglify -s share/js/*.js -o share/static/main.min.js",
+        "js": "uglifyjs share/js/*.js -m -c -o share/static/main.min.js",
         "docker": "docker build --tag registry.cn-hangzhou.aliyuncs.com/scatbay/articles ."
     }
 }
