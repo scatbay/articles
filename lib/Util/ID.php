@@ -25,7 +25,7 @@ class ID extends Core\Component
      */
     public static function normalize($id)
     {
-        return preg_replace(
+        $s_id = preg_replace(
             '#-+#',
             '-',
             str_replace(
@@ -34,5 +34,10 @@ class ID extends Core\Component
                 strtolower(trim($id, " \t\n\r\0\x0B-"))
             )
         );
+        if ($s_id == (string) (float) $s_id) {
+            $s_id = '_'.$s_id;
+        }
+
+        return $s_id;
     }
 }
