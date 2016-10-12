@@ -1,0 +1,25 @@
+location /a/ {
+    valid_referers      scatbay.com *.scatbay.com;
+    if ($invalid_referer) {
+        return          403;
+    }
+
+    if ($uri ~ \.map$) {
+        return          404;
+    }
+
+    sendfile            on;
+    tcp_nodelay         off;
+    tcp_nopush          on;
+    aio                 threads;
+
+    gzip                on;
+    gzip_comp_level     4;
+    gzip_disable        msie;
+    gzip_min_length     256;
+    gzip_proxied        any;
+    gzip_types          text/css application/javascript image/svg+xml;
+    gzip_vary           on;
+
+    expires             max;
+}

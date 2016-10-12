@@ -2,6 +2,7 @@ location /a/ {
     if ($uri ~ ^/a/.*/$) {
         rewrite                 ^(.*)/$ $1 permanent;
     }
+
     try_files                   $uri $uri/index.html @articles-cache;
 }
 
@@ -15,7 +16,7 @@ location @articles-php {
     internal;
     rewrite                     ^/a/.cache(/.*)$ /a/.cgi-bin/fcgi.php$1 break;
     fastcgi_split_path_info     ^(.+\.php)(/.*)$;
-    fastcgi_pass                php;
+    fastcgi_pass                php5-fpm;
     include                     fastcgi_params;
     fastcgi_param               SCRIPT_FILENAME $document_root$fastcgi_script_name;
     fastcgi_param               PATH_INFO       $fastcgi_path_info;
