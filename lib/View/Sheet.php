@@ -9,10 +9,12 @@
 
 namespace scatbay\articles\View;
 
+use snakevil\zen;
+
 /**
  * 文章列表页视图。
  */
-class Sheet extends Twig
+class Sheet extends zen\View\Twig
 {
     /**
      * {@inheritdoc}
@@ -20,4 +22,12 @@ class Sheet extends Twig
      * @var string
      */
     const TWIG = 'sheet.twig';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'scatbay/articles:sheet';
+    }
 }

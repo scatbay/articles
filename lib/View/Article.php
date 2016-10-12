@@ -9,10 +9,13 @@
 
 namespace scatbay\articles\View;
 
+use Twig_SimpleFilter;
+use snakevil\zen;
+
 /**
  * 文章阅读页视图。
  */
-class Article extends Twig
+class Article extends zen\View\Twig
 {
     /**
      * {@inheritdoc}
@@ -29,5 +32,35 @@ class Article extends Twig
     protected function getTitle()
     {
         return $this->params['article']->title;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'scatbay/articles:article';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFilters()
+    {
+        return array(
+            new Twig_SimpleFilter('lazy', array($this, 'twigLazyFilter')),
+        );
+    }
+
+    /**
+     * 将 HTML 中的图片代码进行修改以用于延迟加载。
+     *
+     * @param string $html
+     *
+     * @return string
+     */
+    public function twigLazyFilter($html)
+    {
+        return str_replace('<img src="', '<img class="lazy" data-src="', $html);
     }
 }
