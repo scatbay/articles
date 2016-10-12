@@ -175,15 +175,16 @@ class Article extends zen\Model
     /**
      * 发表新文章。
      *
-     * @param User   $author
-     * @param string $markdown
+     * @param User             $author
+     * @param string           $markdown
+     * @param ZenType\DateTime $time     Optional.
      *
      * @return self
      *
      * @throws ExArticleTitleNotFound
      * @throws ExArticleDuplicateTitle
      */
-    public static function publish(User $author, $markdown)
+    public static function publish(User $author, $markdown, ZenType\DateTime $time = null)
     {
         $a_props = array(
             'author' => $author,
@@ -215,6 +216,9 @@ class Article extends zen\Model
             if ($i_pos2) {
                 $a_props['briefing'] = substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1);
             }
+        }
+        if ($time) {
+            $a_props['time'] = $time;
         }
         try {
             return self::create($a_props);

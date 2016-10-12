@@ -9,6 +9,7 @@
 
 namespace scatbay\articles\Controller\My;
 
+use Zen\Core\Type as ZenType;
 use scatbay\articles;
 
 /**
@@ -29,7 +30,11 @@ class Publish extends articles\Controller\My
      */
     protected function onPOST()
     {
-        $o_art = articles\Model\Article::publish($this->self, $this->input['p:content']);
+        $o_art = articles\Model\Article::publish(
+            $this->self,
+            $this->input['p:content'],
+            new ZenType\DateTime($this->input->expect('p:time', 'now'))
+        );
         foreach (explode(',', $this->input['p:tags']) as $vv) {
             $vv = trim($vv);
             if (!$vv) {
