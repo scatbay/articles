@@ -22,4 +22,6 @@ location /a/ {
     gzip_vary           on;
 
     expires             max;
+
+    include             sites-available/scatbay.com.d/cors.conf;
 }
