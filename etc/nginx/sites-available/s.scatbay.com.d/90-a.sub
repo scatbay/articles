@@ -11,7 +11,7 @@ location /a/ {
     sendfile            on;
     tcp_nodelay         off;
     tcp_nopush          on;
-    aio                 threads;
+    aio                 on;
 
     gzip                on;
     gzip_comp_level     4;

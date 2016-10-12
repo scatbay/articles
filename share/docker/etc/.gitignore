@@ -3,3 +3,4 @@
 
 !crontabs/
 !services.d/
+!nginx/
