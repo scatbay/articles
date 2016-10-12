@@ -9,13 +9,12 @@
 
 namespace scatbay\articles\Controller;
 
-use snakevil\zen;
 use scatbay\articles;
 
 /**
  * 阅读文章控制器。
  */
-class Article extends zen\Controller\Web
+class Article extends Controller
 {
     /**
      * {@inheritdoc}

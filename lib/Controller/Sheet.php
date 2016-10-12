@@ -10,13 +10,12 @@
 namespace scatbay\articles\Controller;
 
 use Zen\Core\Type as ZenType;
-use snakevil\zen;
 use scatbay\articles;
 
 /**
  * 文章列表控制器。
  */
-class Sheet extends zen\Controller\Web
+class Sheet extends Controller
 {
     /**
      * {@inheritdoc}

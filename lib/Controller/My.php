@@ -10,13 +10,12 @@
 namespace scatbay\articles\Controller;
 
 use Exception;
-use snakevil\zen;
 use scatbay\articles;
 
 /**
  * 基于用户身份令牌识别的抽象控制器。
  */
-class My extends zen\Controller\Web
+class My extends Controller
 {
     /**
      * 登录用户实体。
