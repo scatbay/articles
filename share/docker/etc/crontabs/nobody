@@ -1,1 +1,1 @@
-*/1 * * * * /var/www/scatbay.com/_articles.git/share/cron/drop-expired-html-cache.sh
+*/1 * * * * /var/www/scatbay.com/_articles/share/cron/drop-expired-html-cache.sh
