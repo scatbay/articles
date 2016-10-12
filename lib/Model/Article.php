@@ -222,6 +222,7 @@ class Article extends zen\Model
             if (23000 == $ee->getCode()) {
                 throw new ExArticleDuplicateTitle($a_props['id']);
             }
+            throw $ee;
         }
     }
 }
