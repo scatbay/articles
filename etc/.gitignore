@@ -1,7 +1,8 @@
 *
-
 !.gitignore
+
 !cron.d/
 !nginx/
 !config.php~dist
 !route.php
+!crontabs/
