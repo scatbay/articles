@@ -13,6 +13,7 @@
     "require": {
         "ext-ctype": "*",
         "ext-pdo_sqlite": "*",
+        "ext-zlib": "*",
         "snakevil/zen": "@dev",
         "zen/web-application": "@dev",
         "zen/model": "^0.1.2",

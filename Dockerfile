@@ -3,7 +3,7 @@ MAINTAINER Snakevil Zen <zsnakevil@gmail.com>
 
 VOLUME /mnt/db
 
-RUN apk add --no-cache php5-ctype php5-pdo_sqlite \
+RUN apk add --no-cache php5-ctype php5-pdo_sqlite php5-zlib \
  && mkdir -p /var/www/scatbay.com/_/share/public \
     /var/www/scatbay.com/_/share/static
 ADD . /var/www/scatbay.com/_articles/
