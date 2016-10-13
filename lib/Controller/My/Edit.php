@@ -9,6 +9,7 @@
 
 namespace scatbay\articles\Controller\My;
 
+use snakevil\zen;
 use scatbay\articles;
 
 /**
@@ -46,6 +47,12 @@ class Edit extends articles\Controller\My
         $o_art = $this->getArticle();
         $o_art->markdown = $this->input->expect('p:content', '');
         $o_art->save();
-        $this->output->redirect($this->config['prefix'].$o_art->time->format('/Y-m/').$o_art->id);
+        $s_urn = $o_art->time->format('Y-m/').$o_art->id;
+        if (isset($this->config['caching.solid'])) {
+            zen\Utility\Cache::root($this->config['caching.solid']);
+            $o_cache = new zen\Utility\Cache($s_urn.'/index.html');
+            $o_cache->purge();
+        }
+        $this->output->redirect($this->config['prefix'].'/'.$s_urn.'?_='.time());
     }
 }
