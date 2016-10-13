@@ -9,12 +9,10 @@
 
 namespace scatbay\articles\Controller;
 
-use snakevil\zen;
-
 /**
  * 用户退出登录控制器。
  */
-class Logout extends zen\Controller\Web
+class Logout extends Controller
 {
     /**
      * {@inheritdoc}

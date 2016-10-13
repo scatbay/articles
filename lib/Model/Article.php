@@ -116,20 +116,13 @@ class Article extends zen\Model
      */
     public function setMarkdown($code)
     {
-        $this->markdown = $code;
-        $o_mdp = new markdown\GithubMarkdown();
-        $o_mdp->html5 = true;
-        $this->content = trim(preg_replace('#<h1>.+</h1>#', '', $o_mdp->parse($code)));
-        $s_brief = '';
-        $i_pos1 = strpos($this->content, '<p>');
-        if ($i_pos1) {
-            $i_pos1 += 3;
-            $i_pos2 = strpos($this->content, '</p>');
-            if ($i_pos2) {
-                $s_brief = strip_tags(substr($this->content, $i_pos1, $i_pos2 - $i_pos1));
-            }
+        if ($code == $this->markdown) {
+            return;
         }
-        $this->briefing = $s_brief;
+        $a_props = self::parse($code);
+        $this->markdown = $code;
+        $this->content = $a_props['content'];
+        $this->briefing = $a_props['briefing'];
     }
 
     /**
@@ -186,37 +179,8 @@ class Article extends zen\Model
      */
     public static function publish(User $author, $markdown, ZenType\DateTime $time = null)
     {
-        $a_props = array(
-            'author' => $author,
-            'briefing' => '',
-            'markdown' => $markdown,
-        );
-        $o_mdp = new markdown\GithubMarkdown();
-        $o_mdp->html5 = true;
-        $a_props['content'] = $o_mdp->parse($markdown);
-        $i_pos1 = strpos($a_props['content'], '<h1>');
-        if (false === $i_pos1) {
-            throw new ExArticleTitleNotFound();
-        }
-        $i_pos1 += 4;
-        $i_pos2 = strpos($a_props['content'], '</h1>');
-        if (false === $i_pos2) {
-            throw new ExArticleTitleNotFound();
-        }
-        $a_props['title'] = strip_tags(trim(substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1)));
-        $a_props['content'] = (4 != $i_pos1 ?
-            substr($a_props['content'], 0, $i_pos1 - 4) :
-            ''
-        ).substr($a_props['content'], 5 + $i_pos2);
-        $a_props['id'] = articles\Util\ID::normalize($a_props['title']);
-        $i_pos1 = strpos($a_props['content'], '<p>');
-        if ($i_pos1) {
-            $i_pos1 += 3;
-            $i_pos2 = strpos($a_props['content'], '</p>');
-            if ($i_pos2) {
-                $a_props['briefing'] = substr($a_props['content'], $i_pos1, $i_pos2 - $i_pos1);
-            }
-        }
+        $a_props = self::parse($markdown);
+        $a_props['author'] = $author;
         if ($time) {
             $a_props['time'] = $time;
         }
@@ -228,5 +192,48 @@ class Article extends zen\Model
             }
             throw $ee;
         }
+    }
+
+    /**
+     * 解析 Markdown 代码。
+     *
+     * @param string $markdown
+     *
+     * @return string[]
+     */
+    protected static function parse($markdown)
+    {
+        $a_fields = array(
+            'markdown' => $markdown,
+            'briefing' => '',
+        );
+        $o_mdp = new markdown\GithubMarkdown();
+        $o_mdp->html5 = true;
+        $a_fields['content'] = $o_mdp->parse($markdown);
+        $i_pos1 = strpos($a_fields['content'], '<h1>');
+        if (false === $i_pos1) {
+            throw new ExArticleTitleNotFound();
+        }
+        $i_pos1 += 4;
+        $i_pos2 = strpos($a_fields['content'], '</h1>');
+        if (false === $i_pos2) {
+            throw new ExArticleTitleNotFound();
+        }
+        $a_fields['title'] = strip_tags(trim(substr($a_fields['content'], $i_pos1, $i_pos2 - $i_pos1)));
+        $a_fields['content'] = (4 != $i_pos1 ?
+            substr($a_fields['content'], 0, $i_pos1 - 4) :
+            ''
+        ).substr($a_fields['content'], 5 + $i_pos2);
+        $a_fields['id'] = articles\Util\ID::normalize($a_fields['title']);
+        $i_pos1 = strpos($a_fields['content'], '<p>');
+        if ($i_pos1) {
+            $i_pos1 += 3;
+            $i_pos2 = strpos($a_fields['content'], '</p>');
+            if ($i_pos2) {
+                $a_fields['briefing'] = substr($a_fields['content'], $i_pos1, $i_pos2 - $i_pos1);
+            }
+        }
+
+        return $a_fields;
     }
 }

@@ -18,6 +18,7 @@ return array(
         'i' => array(
             '' => $s_ns.'My\\Dashboard',
             '/publish' => $s_ns.'My\\Publish',
+            '/edit' => $s_ns.'My\\Edit',
         ),
     ),
     '.*' => '@302:/a/',

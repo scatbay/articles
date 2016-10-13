@@ -7,7 +7,7 @@
  * @license   GPL-3.0
  */
 
-namespace scatbay\articles\Model;
+namespace scatbay\articles\Controller;
 
 use scatbay\articles;
 
@@ -21,5 +21,5 @@ class ExUserNotLogined extends articles\Exception
      *
      * @var string
      */
-    protected static $template = '用户未登录。';
+    protected static $template = '您尚未登录。';
 }
