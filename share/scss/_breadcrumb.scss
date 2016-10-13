@@ -5,7 +5,7 @@
 
     &:nth-child(n+3):before {
         content: '/';
-        margin-right: .25em;
+        margin: 0 .25em;
     }
   }
 }

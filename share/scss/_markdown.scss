@@ -68,6 +68,7 @@
     padding-left: 1em;
     border-left: .25em solid $color-border;
     color: $color-default;
+    font-size: .9em;
   }
 
   table,
@@ -110,23 +111,31 @@
 
   code,
   tt {
+    font-family: "Source Code Pro", "Courier New", monospace;
     font-size: .8em;
-    padding: .3em .6em;
-    background-color: $color-border;
-    @include border-radius(.5em);
+    vertical-align: top;
+  }
+
+  p,
+  li {
+    code,
+    tt {
+      background-color: $color-border;
+      @include border-radius(.5em);
+      padding: .3em .6em;
+    }
   }
 
   pre {
     font-family: monospace;
     padding: 1em;
-    background-color: $color-border;
+    background-color: #000;
     overflow: auto;
     @include border-radius(.5em);
     line-height: 1.5;
 
     code {
-      color: $color-text;
-      padding: 0;
+      color: $color-border;
     }
   }
 }
