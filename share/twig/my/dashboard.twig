@@ -1,3 +1,12 @@
-<h1>{{i.id}}</h1>
-<a href="{{prefix}}/s/i/write">发表新文章</a>
-<a href="{{prefix}}/s/logout">退出</a>
+<h1>{{ i.id }}</h1>
+<a href="{{ prefix }}/s/i/write">发表新文章</a>
+<a href="{{ prefix }}/s/logout">退出</a>
+<hr>
+<ul>
+  {% for article in articles %}
+    <li>
+      <a href="{{ prefix ~ article.time|date('/Y-m/') ~ article.id }}" target="_blank">{{ article.title }}</a>
+      <a href="{{ prefix }}/s/i/edit?{{ article.id }}" target="_blank">[ 编辑 ]</a>
+    </li>
+  {% endfor %}
+</ul>

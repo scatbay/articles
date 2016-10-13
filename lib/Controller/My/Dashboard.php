@@ -25,6 +25,9 @@ class Dashboard extends articles\Controller\My
             array(
                 'i' => $this->self,
                 'prefix' => $this->config['prefix'],
+                'articles' => articles\Model\ArticleSet::all()
+                    ->filterEq('author', $this->self)
+                    ->sortBy('time', articles\Model\ArticleSet::SORT_DESC),
             )
         );
     }
