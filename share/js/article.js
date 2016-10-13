@@ -2,6 +2,8 @@
     $html = $('html');
     if (!$html.hasClass('article')) return;
 
+    $('p img').closest('p').addClass('text-center');
+
     Prism.plugins.autoloader.languages_path = '//cdn.bootcss.com/prism/1.5.1/components/';
 
     $(document).ready(function () {
