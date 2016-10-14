@@ -1,0 +1,25 @@
+.page-header {
+  background: url("//s.scatbay.com/a/banner.jpg") center;
+}
+
+.page-logo {
+  display: block;
+  width: 260px;
+  height: 80px;
+  text-indent: -9999px;
+  background: url("//s.scatbay.com/a/logo.png") no-repeat center;
+  padding: 2rem 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.page-footer {
+  font-size: .9rem;
+  padding: 3rem 0 2rem 0;
+  background: $color-border;
+  line-height: 2;
+
+  address {
+    @extend .text-center;
+    font-variant: normal;
+  }
+}

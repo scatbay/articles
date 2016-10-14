@@ -9,7 +9,7 @@
   {% if __TWIG__.description %}<meta name="description" content="{{ __TWIG__.description }}">{% endif %}
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
   <link href="//s.scatbay.com/a/apple.png" rel="apple-touch-icon">
-  <link href="//s.scatbay.com/a/logo.png" rel="shortcut icon">
+  <link href="//s.scatbay.com/a/icon.png" rel="shortcut icon">
   <link href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css" rel="stylesheet">
   {% block css %}
   {% endblock %}
@@ -23,13 +23,21 @@
     <p class="page-warning">注意：您的浏览器未启用 JavaScript，高级交互功能将因此无法使用。请<a href="https://www.baidu.com/s?wd=启用JavaScript" target="_blank">启用</a>以获得更好地体验。</p>
   </noscript>
   <div class="page-header">
-    <div class="container">HEADER</div>
+    <div class="container">
+      <a class="page-logo" href="/" target="_blank">
+        <h1>骤雨湾技术服务</h1>
+        <address>深度定制，提升品牌个性</address>
+      </a>
+    </div>
   </div>
   <div class="container">
     {% block main %}{% endblock %}
   </div>
   <div class="page-footer">
-    <div class="container">FOOTER</div>
+    <div class="container">
+      <address>&copy; 2016 骤雨湾（武汉）技术服务有限公司</address>
+      <address>鄂ICP备16018522号-1</address>
+    </div>
   </div>
   <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
   {% block js %}
