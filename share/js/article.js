@@ -8,7 +8,8 @@
 
     $(document).ready(function () {
         $('.markdown img.lazy').lazyload({
-            data_attribute: 'src'
+            effect: 'fadeIn',
+            skip_invisible: true
         });
 
         (function (appid, conf, prefix) {

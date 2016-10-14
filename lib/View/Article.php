@@ -62,7 +62,7 @@ class Article extends zen\View\Twig
      */
     public function twigLazyFilter($html)
     {
-        return str_replace('<img src="', '<img class="lazy" data-src="', $html);
+        return str_replace('<img src="', '<img class="lazy" data-original="', $html);
     }
 
     /**
