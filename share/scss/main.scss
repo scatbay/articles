@@ -17,15 +17,16 @@ $font-sans-serif: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", 
 @import 'mixin/misc';
 @import 'mixin/grid';
 
-@import 'override';
-@import 'grid';
-@import 'iconfont';
-@import 'page';
-@import 'breadcrumb';
-@import 'column';
-@import 'text';
-@import 'articles';
-@import 'tags';
-@import 'markdown';
-@import 'anchor';
-@import 'message';
+@import 'common/override';
+@import 'common/grid';
+@import 'common/iconfont';
+@import 'common/text';
+@import 'common/markdown';
+
+@import 'main/page';
+@import 'main/breadcrumb';
+@import 'main/column';
+@import 'main/articles';
+@import 'main/tags';
+@import 'main/anchor';
+@import 'main/message';

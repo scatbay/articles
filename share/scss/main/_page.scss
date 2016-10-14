@@ -5,11 +5,12 @@
 .page-logo {
   display: block;
   width: 260px;
-  height: 80px;
-  text-indent: -9999px;
   background: url("//s.scatbay.com/a/logo.png") no-repeat center;
-  padding: 2rem 0;
-  border-bottom: 1px solid $color-border;
+  padding: 4rem 0;
+
+  * {
+    display: none;
+  }
 }
 
 .page-footer {
