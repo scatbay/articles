@@ -2,6 +2,10 @@
 
 {% extends 'common.twig' %}
 
+{% block js %}
+  <script src="//cdn.bootcss.com/masonry/4.1.1/masonry.pkgd.min.js"></script>
+{% endblock %}
+
 {% block breadcrumb %}
   {% if path.month %}
     <li><a href="{{ prefix ~ path.month }}">{{ path.month|trim('/') }}</a></li>
@@ -19,9 +23,9 @@
     {% if not articles|length %}
       <address>Oops...</address>
     {% else %}
-      <ul class="row">
+      <ul class="row articles">
         {% for article in articles %}
-          <li class="cell-xs-12 cell-l-4 column-item">
+          <li class="cell-xs-12 cell-l-4 column-item articles-item">
             <article>
               <header>
                 <h1 class="column-item-title">

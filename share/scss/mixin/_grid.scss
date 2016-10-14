@@ -28,7 +28,6 @@
     min-height: 1px;
     padding-left: floor($gutter / 2);
     padding-right: ceil($gutter / 2);
-    @include clear-fix;
     @include border-box;
   }
 }

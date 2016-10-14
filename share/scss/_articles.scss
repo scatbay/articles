@@ -1,0 +1,13 @@
+.articles-item {
+  &:nth-child(n+4) article {
+    padding-top: 3rem;
+    border-top: 1px solid $color-hilite;
+  }
+
+  @media (max-width: $screen-l - 1) {
+    &:nth-child(n+2) article {
+      padding-top: 3rem;
+      border-top: 1px solid $color-hilite;
+    }
+  }
+}
