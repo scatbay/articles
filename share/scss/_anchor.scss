@@ -1,0 +1,19 @@
+a.anchor {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  @extend .text-center;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  h2:hover &,
+  h3:hover &,
+  h4:hover &,
+  h5:hover & {
+    display: initial;
+  }
+}

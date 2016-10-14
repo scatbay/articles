@@ -2,5 +2,10 @@
     $('html').addClass('js')
         .removeClass('no-js');
 
-    $('.markdown a').attr('target', '_blank');
+    $('.markdown a').map(function ($this) {
+        $this = $(this);
+
+        if (!$this.hasClass('anchor'))
+            $this.attr('target', '_blank');
+    });
 })();

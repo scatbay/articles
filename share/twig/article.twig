@@ -38,7 +38,7 @@
       {% endif %}
     </header>
     <div class="markdown">
-      {{ article.content|lazy|raw }}
+      {{ article.content|lazy|anchor|raw }}
     </div>
     <footer>
       <div id="SOHUCS" sid="{{ article.id|hash }}"></div>

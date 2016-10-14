@@ -31,7 +31,7 @@ class ID extends Core\Component
             str_replace(
                 array(' ', '/', ':', '#', '"', "'", '<', '>'),
                 array('-', '-', '-', '', '', '', '', ''),
-                strtolower(trim($id, " \t\n\r\0\x0B-"))
+                strtolower(strip_tags(trim($id, " \t\n\r\0\x0B-")))
             )
         );
         if ($s_id == (string) (float) $s_id) {

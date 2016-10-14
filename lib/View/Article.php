@@ -11,6 +11,7 @@ namespace scatbay\articles\View;
 
 use Twig_SimpleFilter;
 use snakevil\zen;
+use scatbay\articles;
 
 /**
  * 文章阅读页视图。
@@ -49,6 +50,7 @@ class Article extends zen\View\Twig
     {
         return array(
             new Twig_SimpleFilter('lazy', array($this, 'twigLazyFilter')),
+            new Twig_SimpleFilter('anchor', array($this, 'twigAnchorFilter')),
             new Twig_SimpleFilter('hash', array($this, 'twigHashFilter')),
         );
     }
@@ -63,6 +65,35 @@ class Article extends zen\View\Twig
     public function twigLazyFilter($html)
     {
         return str_replace('<img src="', '<img class="lazy" data-original="', $html);
+    }
+
+    /**
+     * 为 HTML 中的标题加上锚点。
+     *
+     * @param string $html
+     *
+     * @return string
+     */
+    public function twigAnchorFilter($html)
+    {
+        return preg_replace_callback('|<(h[2-5])>(.+)</\1>|U', array($this, 'twigAnchorFilterCallback'), $html);
+    }
+
+    /**
+     * 锚点插件的替换回调函数。
+     *
+     * @param string[]
+     *
+     * @return string
+     */
+    protected function twigAnchorFilterCallback($matches)
+    {
+        $s_id = articles\Util\ID::normalize($matches[2]);
+
+        return '<'.$matches[1].' id="'.$s_id.'">'.
+            $matches[2].
+            '<a class="anchor" href="#'.$s_id.'">#</a>'.
+            '</'.$matches[1].'>';
     }
 
     /**
