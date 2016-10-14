@@ -40,7 +40,7 @@
     "scripts": {
         "css:main": "sass -t compressed share/scss/main.scss:share/static/main.min.css",
         "css": "@css:main",
-        "js:main": "uglifyjs share/js/*.js -m -c -o share/static/main.min.js",
+        "js:main": "uglifyjs share/js/main/*.js -m -c -o share/static/main.min.js",
         "js": "@js:main",
         "docker:build": "docker build --tag registry.cn-hangzhou.aliyuncs.com/scatbay/articles .",
         "docker": "@docker:build"
