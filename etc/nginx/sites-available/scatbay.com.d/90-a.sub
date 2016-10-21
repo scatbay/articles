@@ -8,16 +8,36 @@ location /a/ {
 
 location @articles-cache {
     internal;
+
     rewrite                     ^(/a)/(.*)$ $1/.cache/$2 break;
+
     types {
         text/markdown           md;
     }
+
+    sendfile                    on;
+    tcp_nodelay                 off;
+    tcp_nopush                  on;
+    aio                         on;
+
+    gzip                        on;
+    gzip_comp_level             4;
+    gzip_disable                msie;
+    gzip_min_length             256;
+    gzip_proxied                any;
+    gzip_types                  text/markdown;
+    gzip_vary                   on;
+
+    expires                     5m;
+
     try_files                   $uri $uri/index.html @articles-php;
 }
 
 location @articles-php {
     internal;
+
     rewrite                     ^/a/.cache(/.*)$ /a/.cgi-bin/fcgi.php$1 break;
+
     fastcgi_split_path_info     ^(.+\.php)(/.*)$;
     fastcgi_pass                php5-fpm;
     include                     fastcgi_params;
