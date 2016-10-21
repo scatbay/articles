@@ -12,6 +12,7 @@ location @articles-cache {
     rewrite                     ^(/a)/(.*)$ $1/.cache/$2 break;
 
     types {
+        text/html               html;
         text/markdown           md;
     }
 
