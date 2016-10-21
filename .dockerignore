@@ -4,3 +4,4 @@ Dockerfile
 *.md
 LICENSE
 var/db/articles.db
+node_modules

@@ -9,6 +9,9 @@ location /a/ {
 location @articles-cache {
     internal;
     rewrite                     ^(/a)/(.*)$ $1/.cache/$2 break;
+    types {
+        text/markdown           md;
+    }
     try_files                   $uri $uri/index.html @articles-php;
 }
 

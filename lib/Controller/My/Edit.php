@@ -52,6 +52,8 @@ class Edit extends articles\Controller\My
             zen\Utility\Cache::root($this->config['caching.solid']);
             $o_cache = new zen\Utility\Cache($s_urn.'/index.html');
             $o_cache->purge();
+            $o_cache = new zen\Utility\Cache($s_urn.'.md');
+            $o_cache->purge();
         }
         $this->output->redirect($this->config['prefix'].'/'.$s_urn.'?_='.time());
     }
