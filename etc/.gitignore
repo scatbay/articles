@@ -3,5 +3,5 @@
 
 !cron.d/
 !nginx/
-!config.php~dist
+!config.php
 !route.php
